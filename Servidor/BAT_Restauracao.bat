@@ -36,11 +36,11 @@ CD /D "%~dp0"
 
 
 ::IDENTIFICA IP DO SERVIDOR
-for /f "tokens=4 delims= " %%i in ('route print ^| find " 0.0.0.0"') do set ip=%%i
-echo.%ip% | FIND /I ".">Nul && (
-cls
-) || (
 set ip=127.0.0.1
+for /f "delims=[] tokens=2" %%a in ('ping -4 -n 1 %ComputerName% ^| findstr [') do (
+echo.%ip% | FIND /I ".">Nul && (
+set "ip=%%a"
+)
 )
 
 start /min HTTP\bin\httpd_gb.exe
@@ -193,5 +193,4 @@ echo Corrija, volte aqui e APERTE ENTER!
 pause
 test&cls
 BAT_Restauracao.bat
-)
 )
