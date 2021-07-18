@@ -118,7 +118,7 @@ echo ===========================================================================
 echo.
 echo Aperte ENTER para instalar o Python!
 pause
-start EXE_Python-3.9.6.exe
+start SoftwaresNecessarios\EXE_Python-3.9.6.exe
 echo.
 echo Depois que finalizar a Instalacao do Python volte aqui e aperte ENTER para continuar...
 pause
@@ -138,7 +138,7 @@ echo ===========================================================================
 echo.
 echo Aperte ENTER para instalar o WinRAR!
 pause
-start EXE_WinRAR-602br.exe
+start SoftwaresNecessarios\EXE_WinRAR-602br.exe
 echo.
 echo Depois que finalizar a Instalacao do WinRAR volte aqui e aperte ENTER para continuar...
 pause
