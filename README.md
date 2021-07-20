@@ -28,3 +28,8 @@ Servidor de Gunbound Thor Hammer já pronto para ligar e jogar com seus amigos, 
 ![Screenshot](https://i.imgur.com/dDkAbbX.png)
 
 ![Screenshot](https://i.imgur.com/6QCwkgd.png)
+
+# Créditos
+O script em Python do servidor foi retirado do repositorio https://github.com/jglim/gunbound-server feito por @jglim.
+
+O que eu fiz? Corrigi alguns bugs, automatizei a aplicação para detectar seu ip sempre que ligar o servidor, juntei cliente/jogo com o servidor, criei o executavel/batch para deixar fácil a abertura do servidor mesmo em um prendrive.
