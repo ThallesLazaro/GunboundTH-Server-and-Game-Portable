@@ -37,11 +37,23 @@ CD /D "%~dp0"
 
 ::IDENTIFICA IP DO SERVIDOR
 set ip=127.0.0.1
+set iptipo=local
+if not exist "ip.txt" (
 for /f "delims=[] tokens=2" %%a in ('ping -4 -n 1 %ComputerName% ^| findstr [') do (
-echo.%ip% | FIND /I ".">Nul && (
+echo.%%a | FIND /I ".">Nul && (
 set "ip=%%a"
+set iptipo=local
 )
 )
+) else (
+for /f "delims=" %%x in (ip.txt) do (
+echo.%%x | FIND /I ".">Nul && (
+set "ip=%%x"
+set iptipo=fixo
+)
+)
+)
+
 
 start /min HTTP\bin\httpd_gb.exe
 
@@ -96,7 +108,11 @@ echo {"map_id": 9,"map_name_en": "STARDUST","positions_a_side": [{"slot_index": 
 echo {"map_id": 10,"map_name_en": "META MINE","positions_a_side": [{"slot_index": 0, "x_min": 222, "x_max": 408, "y": null}, {"slot_index": 1, "x_min": 408, "x_max": 568, "y": null}, {"slot_index": 2, "x_min": 568, "x_max": 728, "y": null}, {"slot_index": 3, "x_min": 728, "x_max": 900, "y": null}, {"slot_index": 4, "x_min": 900, "x_max": 1066, "y": null}, {"slot_index": 5, "x_min": 1066, "x_max": 1230, "y": null}, {"slot_index": 6, "x_min": 1230, "x_max": 1390, "y": null}, {"slot_index": 7, "x_min": 1390, "x_max": 1576, "y": null}],"positions_b_side": [{"slot_index": 0, "x_min": 347, "x_max": 347, "y": null}, {"slot_index": 1, "x_min": 655, "x_max": 655, "y": null}, {"slot_index": 2, "x_min": 899, "x_max": 899, "y": null}, {"slot_index": 3, "x_min": 1099, "x_max": 1099, "y": null}, {"slot_index": 4, "x_min": 1456, "x_max": 1456, "y": null}, {"slot_index": 5, "x_min": 452, "x_max": 452, "y": 1000}, {"slot_index": 6, "x_min": 821, "x_max": 821, "y": 1000}, {"slot_index": 7, "x_min": 1320, "x_max": 1320, "y": 1000}],"positions_raw_evsw": [{"slot_index": 0, "x_min": 222, "x_max": 408, "y": null}, {"slot_index": 1, "x_min": 408, "x_max": 568, "y": null}, {"slot_index": 2, "x_min": 568, "x_max": 728, "y": null}, {"slot_index": 3, "x_min": 728, "x_max": 900, "y": null}, {"slot_index": 4, "x_min": 900, "x_max": 1066, "y": null}, {"slot_index": 5, "x_min": 1066, "x_max": 1230, "y": null}, {"slot_index": 6, "x_min": 1230, "x_max": 1390, "y": null}, {"slot_index": 7, "x_min": 1390, "x_max": 1576, "y": null}],"positions_raw_mix": [{"slot_index": 0, "x_min": 222, "x_max": 408, "y": null}, {"slot_index": 1, "x_min": 408, "x_max": 568, "y": null}, {"slot_index": 2, "x_min": 568, "x_max": 728, "y": null}, {"slot_index": 3, "x_min": 728, "x_max": 900, "y": null}, {"slot_index": 4, "x_min": 900, "x_max": 1066, "y": null}, {"slot_index": 5, "x_min": 1066, "x_max": 1230, "y": null}, {"slot_index": 6, "x_min": 1230, "x_max": 1390, "y": null}, {"slot_index": 7, "x_min": 1390, "x_max": 1576, "y": null}],"positions_raw_random": [{"slot_index": 0, "x_min": 222, "x_max": 408, "y": null}, {"slot_index": 1, "x_min": 408, "x_max": 568, "y": null}, {"slot_index": 2, "x_min": 568, "x_max": 728, "y": null}, {"slot_index": 3, "x_min": 728, "x_max": 900, "y": null}, {"slot_index": 4, "x_min": 900, "x_max": 1066, "y": null}, {"slot_index": 5, "x_min": 1066, "x_max": 1230, "y": null}, {"slot_index": 6, "x_min": 1230, "x_max": 1390, "y": null}, {"slot_index": 7, "x_min": 1390, "x_max": 1576, "y": null}]}>> Temporarios\TXT_Mapas.txt
 echo ]>> Temporarios\TXT_Mapas.txt
 :: Temporarios\TXT_Servidores.txt
+if "%iptipo%" == "fixo" (
+echo {"server_options": [{"server_name": "Servidor %ip%","server_description": "\nServidor Aberto","server_address": "%ip%","server_port": 8370,"server_utilization": 5,"server_capacity": 100,"server_enabled": true},{"server_name": "Quem Criou o Servidor?","server_description": "Thalles Tutoriais\nCanal do Youtube","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Como Funciona?","server_description": "Servidor Aberto\nAo Publico","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Qual o IP do Servidor?","server_description": "IP: %ip%\nIP Publico: %ip%","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Comandos do Gunbound","server_description": "Digite /help\nPara Ver os Comandos","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Precisa de Ajuda?","server_description": "Veja o Tutorial em:\nhttps://thalles.net/gb","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false}]}> Temporarios\TXT_Servidores.txt
+) else (
 echo {"server_options": [{"server_name": "Servidor %ip%","server_description": "\nServidor Aberto","server_address": "%ip%","server_port": 8370,"server_utilization": 5,"server_capacity": 100,"server_enabled": true},{"server_name": "Quem Criou o Servidor?","server_description": "Thalles Tutoriais\nCanal do Youtube","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Como Funciona?","server_description": "Jogue Sozinho\nOu Em Rede Local","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Qual o IP do Servidor?","server_description": "IP: %ip%\nIP de Rede: %ip%","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Comandos do Gunbound","server_description": "Digite /help\nPara Ver os Comandos","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false},{"server_name": "Precisa de Ajuda?","server_description": "Veja o Tutorial em:\nhttps://thalles.net/gb","server_address": "%ip%","server_port": 8370,"server_utilization": 100,"server_capacity": 100,"server_enabled": false}]}> Temporarios\TXT_Servidores.txt
+)
 :: Temporarios\TXT_Requisitos.txt
 echo altgraph==0.16.1> Temporarios\TXT_Requisitos.txt
 echo future==0.17.1>> Temporarios\TXT_Requisitos.txt
@@ -172,10 +188,19 @@ copy HTTP\client\ZIP_GunboundCliente.zip c:\GBTH\
 test&cls
 start /min HTTP\bin\httpd_gb.exe
 echo ==============================================================================
-echo  O IP do seu Servidor do Gunbound e: %ip%
-echo  Acesse http://%ip%/ para baixar o jogo.
+
+if "%iptipo%" == "fixo" (
+echo  O IP Fixo do seu Servidor de Gunbound e: %ip%
+echo  Os jogadores devem acessar http://%ip%/ para baixar o jogo.
+echo  LEMBRE-SE: De abrir as portas 80, 8370 e 8372 do seu Modem.
+echo  Voce tambem deve desativar o Firewall do PC do servidor.
+) else (
+echo  O IP Local do seu Servidor de Gunbound e: %ip%
+echo  Os jogadores devem acessar http://%ip%/ para baixar o jogo.
 echo  LEMBRE-SE: Se quiser jogar Online com seus amigos
 echo  Todos os jogadores devem estar na mesma rede Wifi que o servidor.
+echo  Voce tambem deve desativar o Firewall do PC do servidor.
+)
 echo ==============================================================================
 py PY_ServidorGB_Ligar.py
 if errorlevel 1 (
