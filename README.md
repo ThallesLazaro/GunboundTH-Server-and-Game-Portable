@@ -5,6 +5,39 @@ Servidor de Gunbound Thor Hammer já pronto para ligar e jogar com seus amigos, 
 * Eu automatizei tudo, a criação de contas é feita na primeira vez que você logar no Gunbound, ou seja, nunca vai dar erro de conta inexistente ou login incorreto.
 * Digite /help dentro do jogo para saber todos os comandos disponiveis no servidor.
 
+# Comandos dentro do Gunbound
+* help = Ver todos os comandos
+* /jogar = Iniciar jogo forcado, mesmo sozinho
+* /genero
+  * m = masculino
+  * f = feminino
+* /mobile 0 a 18
+  * 0 = Armor
+  * 1 = Mage
+  * 2 = Nak
+  * 3 = Trico
+  * 4 = Bigfoot
+  * 5 = Boomer
+  * 6 = Raon
+  * 7 = Lightning
+  * 8 = J.D
+  * 9 = A.Sate
+  * 10 = Ice
+  * 11 = Turtle
+  * 12 = Grub
+  * 13 = Aduka
+  * 17 = Dragon
+  * 18 = Knight
+* /guild NOMEDOCLA = Altera o nome do seu cla/guild
+* /avatar = Gera e te veste com avatares aleatorios
+* /msg #,*,$,%,^,&(mensagem) = Envia uma mensagem para todos.
+* /conexao = Verifica se a conexao ainda esta ativa.
+* /online = Verifica jogadores online agora.
+* /salvar = Salva suas informacoes, por exemplo: avatares, guild...
+* /fechar = Fechar sala atual
+* /sair = Sair da sala atual
+* /quit = Fechar jogo imediatamente
+
 # Screenshot do Servidor
 ![Screenshot](https://i.imgur.com/6GnlzCY.png)
 
