@@ -1,0 +1,117 @@
+﻿<?php
+ini_set('memory_limit', '-1');
+ini_set('max_execution_time', '600');
+set_time_limit(600);
+
+@mkdir("GunboundCliente", 777);
+
+class GoodZipArchive extends ZipArchive {
+public function __construct($a=false, $b=false) { $this->create_func($a, $b);  }
+public function create_func($input_folder=false, $output_zip_file=false){
+if($input_folder !== false && $output_zip_file !== false){
+$res = $this->open($output_zip_file, ZipArchive::CREATE);
+if($res === TRUE)   { $this->addDir($input_folder, basename($input_folder)); $this->close(); }
+else{ echo 'Could not create a zip archive. Contact Admin.'; }
+}
+}
+public function addDir($location, $name) {
+$this->addEmptyDir($name);
+$this->addDirDo($location, $name);
+}
+private function addDirDo($location, $name) {
+$name .= '/'; $location .= '/';
+$dir = opendir ($location);
+while ($file = readdir($dir)){
+if ($file == '.' || $file == '..') continue;
+$do = (filetype( $location . $file) == 'dir') ? 'addDir' : 'addFile';
+$this->$do($location . $file, $name . $file);
+}
+} 
+}
+
+function Descompactar($arquivo, $local){
+$zip = new ZipArchive;
+if ($zip->open($arquivo) === TRUE) {
+$zip->extractTo($local);
+$zip->close();
+file_put_contents($local."/Arquivos/IP.txt", trim(file_get_contents("IP.txt")));
+}
+}
+
+if($_GET['baixar']){
+Descompactar("ZIP_GunboundCliente.zip","GunboundCliente");
+new GoodZipArchive("GunboundCliente", "GunboundCliente.zip");
+echo'Pronto! O jogo foi gerado com sucesso, <a href="GunboundCliente.zip"><b>CLICK AQUI</b></a> para baixar o Gunbound.';
+exit();
+}
+
+
+echo'
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<title>Gunbound Thor Hammer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+font-family:arial;
+font-size:20px;
+}
+body{
+max-width:80%;
+width:500px;
+padding:20px;
+margin:0 auto;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Baixe o Gunbound!</h1>
+<div id="ajax">
+Estamos gerando para você o jogo do Gunbound pronto e configurado para jogar, aguarde alguns segundos<span id="wait">.</span>
+<br><br>
+Lembre-se que caso o servidor mude de IP, você terá que baixar o Gunbound novamente!</div>
+
+<br><br><hr><br><br>
+
+<div style="font-size:13px">
+Feito por <a href="https://youtube.com/videostutoriais" target="_blank">Canal Thalles Tutoriais no Youtube.</a>
+<br><br>
+Se você quiser criar seu próprio servidor de Gunbound como este, <a href="https://thalles.net/gb" target="_blank">veja esse vídeo tutorial</a>.
+</div>
+
+
+<script>
+
+function baixar() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("ajax").innerHTML = this.responseText;
+}
+};
+xhttp.open("GET", "?baixar=" + new Date().getTime(), true);
+xhttp.send();
+}
+var dots = window.setInterval(function(){
+var wait = document.getElementById("wait");
+if(wait.innerHTML.length > 3){
+wait.innerHTML = "";
+} else {
+wait.innerHTML += ".";
+}
+}, 100);
+baixar();
+</script>
+
+</body>
+</html>
+';
