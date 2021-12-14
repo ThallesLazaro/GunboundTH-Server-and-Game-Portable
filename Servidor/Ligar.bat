@@ -99,12 +99,7 @@ echo  Verificando requisitos minimos...
 echo  Na primeira inicializacao voce precisa de internet
 echo.
 py -m pip install --upgrade pip
-py -m pip install altgraph==0.16.1
-py -m pip install future==0.17.1
-py -m pip install macholib==1.11
-py -m pip install pefile==2018.8.8
-py -m pip install PyInstaller==3.4
-py -m pip install pywin32-ctypes==0.2.0
+py -m pip install -r Requisitos.txt
 py -m pip install pycryptodome
 mkdir c:\GBTH
 )
