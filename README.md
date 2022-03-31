@@ -1,7 +1,3 @@
-# Vídeo Tutorial no Youtube
-[![Vídeo do Youtube](https://img.youtube.com/vi/RwJdgwj7DjA/mqdefault.jpg)](https://www.youtube.com/watch?v=RwJdgwj7DjA)
-* https://www.youtube.com/watch?v=RwJdgwj7DjA
-
 # Servidor de Gunbound Thor Hammer com o Jogo incluso. 
 Servidor de Gunbound Thor Hammer já pronto para ligar e jogar com seus amigos, o jogo/cliente do Gunbound está incluso!
 
